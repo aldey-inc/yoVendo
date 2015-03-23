@@ -1,0 +1,3 @@
+yo_vendo_main_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: YoVendoMainBundle:Default:index }
