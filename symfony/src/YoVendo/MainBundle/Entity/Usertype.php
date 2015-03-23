@@ -43,4 +43,83 @@ class Usertype
     private $updatedat;
 
 
+
+    /**
+     * Get idusertype
+     *
+     * @return integer 
+     */
+    public function getIdusertype()
+    {
+        return $this->idusertype;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Usertype
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set createdat
+     *
+     * @param \DateTime $createdat
+     * @return Usertype
+     */
+    public function setCreatedat($createdat)
+    {
+        $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    /**
+     * Get createdat
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedat()
+    {
+        return $this->createdat;
+    }
+
+    /**
+     * Set updatedat
+     *
+     * @param \DateTime $updatedat
+     * @return Usertype
+     */
+    public function setUpdatedat($updatedat)
+    {
+        $this->updatedat = $updatedat;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedat
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedat()
+    {
+        return $this->updatedat;
+    }
 }

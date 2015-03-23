@@ -74,4 +74,165 @@ class Sale
     private $idproduct;
 
 
+
+    /**
+     * Set idsale
+     *
+     * @param integer $idsale
+     * @return Sale
+     */
+    public function setIdsale($idsale)
+    {
+        $this->idsale = $idsale;
+
+        return $this;
+    }
+
+    /**
+     * Get idsale
+     *
+     * @return integer 
+     */
+    public function getIdsale()
+    {
+        return $this->idsale;
+    }
+
+    /**
+     * Set saleat
+     *
+     * @param \DateTime $saleat
+     * @return Sale
+     */
+    public function setSaleat($saleat)
+    {
+        $this->saleat = $saleat;
+
+        return $this;
+    }
+
+    /**
+     * Get saleat
+     *
+     * @return \DateTime 
+     */
+    public function getSaleat()
+    {
+        return $this->saleat;
+    }
+
+    /**
+     * Set createdat
+     *
+     * @param \DateTime $createdat
+     * @return Sale
+     */
+    public function setCreatedat($createdat)
+    {
+        $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    /**
+     * Get createdat
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedat()
+    {
+        return $this->createdat;
+    }
+
+    /**
+     * Set updatedat
+     *
+     * @param \DateTime $updatedat
+     * @return Sale
+     */
+    public function setUpdatedat($updatedat)
+    {
+        $this->updatedat = $updatedat;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedat
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedat()
+    {
+        return $this->updatedat;
+    }
+
+    /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     * @return Sale
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer 
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set idclient
+     *
+     * @param \YoVendo\MainBundle\Entity\Client $idclient
+     * @return Sale
+     */
+    public function setIdclient(\YoVendo\MainBundle\Entity\Client $idclient)
+    {
+        $this->idclient = $idclient;
+
+        return $this;
+    }
+
+    /**
+     * Get idclient
+     *
+     * @return \YoVendo\MainBundle\Entity\Client 
+     */
+    public function getIdclient()
+    {
+        return $this->idclient;
+    }
+
+    /**
+     * Set idproduct
+     *
+     * @param \YoVendo\MainBundle\Entity\Product $idproduct
+     * @return Sale
+     */
+    public function setIdproduct(\YoVendo\MainBundle\Entity\Product $idproduct)
+    {
+        $this->idproduct = $idproduct;
+
+        return $this;
+    }
+
+    /**
+     * Get idproduct
+     *
+     * @return \YoVendo\MainBundle\Entity\Product 
+     */
+    public function getIdproduct()
+    {
+        return $this->idproduct;
+    }
 }
