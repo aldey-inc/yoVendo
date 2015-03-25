@@ -212,4 +212,15 @@ class Client
     {
         return $this->sameclient;
     }
+
+    public function __toString(){
+        
+        if($this->nickname == ''){
+            return $this->name;
+        }
+        else{
+            return $this->name.' - '.$this->nickname;
+        }
+        
+    }
 }

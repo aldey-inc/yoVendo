@@ -1,3 +1,8 @@
 yo_vendo_main_homepage:
     path:     /hello/{name}
     defaults: { _controller: YoVendoMainBundle:Default:index }
+
+
+yo_vendo_view_dashboard:
+    path:     /view/dashboard
+    defaults: { _controller: YoVendoMainBundle:Default:viewDashBoard }
