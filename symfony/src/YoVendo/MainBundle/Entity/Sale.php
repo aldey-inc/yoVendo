@@ -236,7 +236,7 @@ class Sale
         return $this->idproduct;
     }
     public function __toString(){
-        return (String)$this->getIdsale().' '.date_format($this->getSaleat(), 'Y-m-d H:i:s');
+        return (String)$this->getIdsale().' '.date_format($this->getSaleat(), 'Y-m-d H:i:s').' '.(String)$this->getQuantity();
         
     }
 }
