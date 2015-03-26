@@ -6,3 +6,7 @@ yo_vendo_main_homepage:
 yo_vendo_view_dashboard:
     path:     /view/dashboard
     defaults: { _controller: YoVendoMainBundle:Default:viewDashBoard }
+
+yo_vendo_view_dashboard_date:
+    path:     /view/dashboard/{startDate}/{endDate}
+    defaults: { _controller: YoVendoMainBundle:Default:viewDashBoard }

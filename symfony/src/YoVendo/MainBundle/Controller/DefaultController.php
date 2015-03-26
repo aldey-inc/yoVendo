@@ -11,12 +11,11 @@ class DefaultController extends Controller
         return $this->render('YoVendoMainBundle:Default:index.html.twig', array('name' => $name));
     }
 
-    public function viewDashBoardAction(){
-    	$startDate=null;
-    	$endDate=null;
+    public function viewDashBoardAction($startDate = null,$endDate = null){
+    	
 
     	if($startDate==null){
-    		$startDate=new \DateTime('2011-01-01 00:00:00');
+    		$startDate=new \DateTime('2014-01-01 00:00:00');
     	}
     	if($endDate==null){
     		$endDate=new \DateTime('now');
@@ -43,7 +42,12 @@ class DefaultController extends Controller
     	}
     	//$sales=$this->getAllSalesByClients(null,null);
 
+        foreach ($salesForMonth as $key => $value) {
+            $total[$key] = $value['total'];
+            # code...
+        }
 
+        array_multisort($total,SORT_DESC,$salesForMonth);
 
     	return $this->render('YoVendoMainBundle:Default:viewDashBoard.html.twig',array('name' => 'desdele56jos','clients'=> $clients,'salesForMonth'=>$salesForMonth,'startMonths' => $startMonths, 'endMonths'=>$endMonths));
     }
@@ -72,10 +76,10 @@ class DefaultController extends Controller
     	return $query->getResult();
     }
     public function getSalesByClient($client,$startDate,$endDate){
-    	if($startDate==null){
+    	if(is_null($startDate)){
     		$startDate=new \DateTime('2011-01-01 00:00:00');
     	}
-    	if($endDate==null){
+    	if(is_null($endDate)){
     		$endDate=new \DateTime('now');
     	}
 
@@ -84,11 +88,15 @@ class DefaultController extends Controller
     	$dql= 	'SELECT sale
     				FROM YoVendoMainBundle:Sale sale
     			WHERE sale.idclient = :idClient
+                    AND sale.saleat >= :startDate
+                    AND sale.saleat <= :endDate
     			';
 
-    	$query= $em->createQuery($dql);
+    	$query= $em->createQuery($dql);        
 
     	$query->setParameter('idClient',$client->getIdclient());
+        $query->setParameter('startDate',$startDate);
+        $query->setParameter('endDate',$endDate);
 
     	return $query->getResult();
     }

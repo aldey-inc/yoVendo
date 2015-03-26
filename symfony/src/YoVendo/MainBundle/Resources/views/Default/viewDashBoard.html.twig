@@ -1,11 +1,12 @@
-<table class="responstable">
-	<thead>
+<input type="search">
 
-	</thead>
+<section>
+<table class="responstable">
+
 	<tbody>
 		{% for client  in salesForMonth  %}
 			<tr>
-			<td>{{ client['nameClient']}}</td>
+			<th>{{ client['nameClient']}}</th>
 			{% for i in startMonths..endMonths  %}
 				{% if client[i] is defined %}
 					<td>{{client[i]}}</td>
@@ -18,13 +19,50 @@
 			</tr>
 		{% endfor %}
 	</tbody>
+  <thead>
+      <tr>
+        <td>Año</td>
+        {% for i in (startMonths/12)|number_format(0,'.','')..(endMonths/12)|number_format(0,'.','') %}
+          <th colspan="{{ 13-(startMonths%12) }}">{{ i }}</th>       
+        {% endfor %}
+
+      </tr> 
+      <tr>
+        <td>Mes</td>
+        {% for i in (startMonths)..(endMonths) %}
+          {% if i%12 == 0%}
+          <th> 12</th>
+          {% else %}
+          <th> {{i%12}} </th>
+          {% endif %}
+        {% endfor %}
+        <th>Total</th>
+      </tr>         
+
+  </thead>
 	<tfoot>
 	</tfoot>
 </table>
+</section>
 
 
 
 <style type="text/css">
+  
+  /*
+
+RESPONSTABLE 2.0 by jordyvanraaij
+  Designed mobile first!
+
+If you like this solution, you might also want to check out the 1.0 version:
+  https://gist.github.com/jordyvanraaij/9069194
+
+*/
+section{
+  width: 80%;  
+  margin: 0 auto;
+}
+
 .responstable {
   margin: 1em 0;
   width: 100%;
@@ -45,7 +83,7 @@
   border: 1px solid #FFF;
   background-color: #167F92;
   color: #FFF;
-  padding: 1em;
+  padding: 1em;  
 }
 .responstable th:first-child {
   display: table-cell;
@@ -70,8 +108,9 @@
 }
 .responstable td {
   display: block;
-  word-wrap: break-word;
-  max-width: 7em;
+  word-wrap: break-word;  
+  min-width: 0em;
+  max-width: 5em;
 }
 .responstable td:first-child {
   display: table-cell;
@@ -84,8 +123,10 @@
   }
 }
 .responstable th, .responstable td {
-  text-align: left;
+  
   margin: .5em 1em;
+  font-size: 0.8em;
+  text-align: center;
 }
 @media (min-width: 480px) {
   .responstable th, .responstable td {
@@ -111,3 +152,4 @@ h1 span {
 }
 
 </style>
+
