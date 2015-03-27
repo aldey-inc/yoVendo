@@ -1,54 +1,73 @@
-<input type="search">
+{% extends 'base.html.twig' %}
+{% block body %}
+  <section>
+  <table>
+    <thead>
+    <tr>
+    {{ form_start(form) }}
+      
+      <td>Fecha Inicial: {{ form_widget(form.startDate) }}</td>
+      
+      <td>Fecha Final: {{ form_widget(form.endDate) }}</td>
+      
+      <td>{{ form_widget(form.Consultar) }}</td>    <a class="button white" href="#">ejemplo</a>
 
-<section>
-<table class="responstable">
+    {{ form_end(form) }}
+    </tr>
+    </thead>
+  </table>
+  </section>
+  <section>
+  <table class="responstable">
 
-	<tbody>
-		{% for client  in salesForMonth  %}
-			<tr>
-			<th>{{ client['nameClient']}}</th>
-			{% for i in startMonths..endMonths  %}
-				{% if client[i] is defined %}
-					<td>{{client[i]}}</td>
-				{% else %}
-					<td>{{0}}	</td>
-				
-				{% endif %}			
-			{% endfor %}
-			<td> {{client['total']}}</td>
-			</tr>
-		{% endfor %}
-	</tbody>
-  <thead>
-      <tr>
-        <td>Año</td>
-        {% for i in (startMonths/12)|number_format(0,'.','')..(endMonths/12)|number_format(0,'.','') %}
-          <th colspan="{{ 13-(startMonths%12) }}">{{ i }}</th>       
-        {% endfor %}
+  	<tbody>
+  		{% for client  in salesForMonth  %}
+  			<tr>
+  			<th>{{ client['nameClient']}}</th>
+  			{% for i in startMonths..endMonths  %}
+  				{% if client[i] is defined %}
+  					<td>{{client[i]}}</td>
+  				{% else %}
+  					<td>{{0}}	</td>
+  				
+  				{% endif %}			
+  			{% endfor %}
+  			<td> {{client['total']}}</td>
+  			</tr>
+  		{% endfor %}
+  	</tbody>
+    <thead>
+        <tr>
+          <td>Año</td>
+          {% for i in (startMonths/12)|number_format(0,'.','')..(endMonths/12)|number_format(0,'.','') %}
+            <th colspan="{{ 13-(startMonths%12) }}">{{ i }}</th>       
+          {% endfor %}
 
-      </tr> 
-      <tr>
-        <td>Mes</td>
-        {% for i in (startMonths)..(endMonths) %}
-          {% if i%12 == 0%}
-          <th> 12</th>
-          {% else %}
-          <th> {{i%12}} </th>
-          {% endif %}
-        {% endfor %}
-        <th>Total</th>
-      </tr>         
+        </tr> 
+        <tr>
+          <td>Mes</td>
+          {% for i in (startMonths)..(endMonths) %}
+            {% if i%12 == 0%}
+            <th> 12</th>
+            {% else %}
+            <th> {{i%12}} </th>
+            {% endif %}
+          {% endfor %}
+          <th>Total</th>
+        </tr>         
 
-  </thead>
-	<tfoot>
-	</tfoot>
-</table>
-</section>
+    </thead>
+  	<tfoot>
+  	</tfoot>
+  </table>
+  </section>
 
+{% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="./jquery.datetimepicker.css"/ >
 
-<style type="text/css">
-  
+  <style type="text/css">
   /*
 
 RESPONSTABLE 2.0 by jordyvanraaij
@@ -150,6 +169,44 @@ h1 {
 h1 span {
   color: #167F92;
 }
-
+button{
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  line-height: 2em;
+  background: rgba(114,212,202,1);
+  border-radius: 5px;
+  border:0;
+  border-top: 1px solid #B2ECE6;
+  box-shadow: 0 0 0 1px #46A294, 0 2px 2px #808389;
+  color: #FFFFFF;
+  font-size: 1.5em;
+  text-shadow: 0 1px 2px #21756A;
+}
+button:hover{
+ background: linear-gradient(to bottom, rgba(107,198,186,1) 0%,rgba(57,175,154,1) 100%);  
+}
+button:active{
+  box-shadow: inset 0 0 5px #000;
+  background: linear-gradient(to bottom, rgba(57,175,154,1) 0%,rgba(107,198,186,1) 100%); 
+}
 </style>
 
+
+
+{% endblock %}
+
+{% block javascriptsh %}
+  <script src="./jquery.js"></script>
+  <script src="./jquery.datetimepicker.js"></script>
+{% endblock %}
+
+{% block javascriptsb %}
+  <script type="text/javascript">
+    jQuery('#form_startDate').datetimepicker();   
+    jQuery('#form_endDate').datetimepicker();   
+  </script>
+{% endblock %}
+
+
+  

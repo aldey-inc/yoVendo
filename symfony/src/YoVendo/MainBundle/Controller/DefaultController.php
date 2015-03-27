@@ -2,6 +2,7 @@
 
 namespace YoVendo\MainBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -11,8 +12,21 @@ class DefaultController extends Controller
         return $this->render('YoVendoMainBundle:Default:index.html.twig', array('name' => $name));
     }
 
-    public function viewDashBoardAction($startDate = null,$endDate = null){
+    public function viewDashBoardAction($startDate = null,$endDate = null,Request $request){
     	
+        $form = $this->createFormBuilder()            
+            ->add('startDate', 'date')
+            ->add('endDate', 'date')
+            ->add('Consultar', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if($form->isValid()){
+            $data= $form->getData();
+            $startDate=$data['startDate'];
+            $endDate=$data['endDate'];
+        }
 
     	if($startDate==null){
     		$startDate=new \DateTime('2014-01-01 00:00:00');
@@ -49,7 +63,14 @@ class DefaultController extends Controller
 
         array_multisort($total,SORT_DESC,$salesForMonth);
 
-    	return $this->render('YoVendoMainBundle:Default:viewDashBoard.html.twig',array('name' => 'desdele56jos','clients'=> $clients,'salesForMonth'=>$salesForMonth,'startMonths' => $startMonths, 'endMonths'=>$endMonths));
+    	return $this->render('YoVendoMainBundle:Default:viewDashBoard.html.twig',array(
+            'name' => 'desdele56jos',
+            'clients'=> $clients,
+            'salesForMonth'=>$salesForMonth,
+            'startMonths' => $startMonths, 
+            'endMonths'=>$endMonths,
+            'form'=>$form->createView()
+            ));
     }
 
     public function getAllSalesByClients($startDate,$endDate){
